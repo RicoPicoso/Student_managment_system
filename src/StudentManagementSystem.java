@@ -4,8 +4,8 @@ import java.util.stream.Collectors;
 public class StudentManagementSystem {
 
 
-    private HashMap<String, List<Double>> students = new HashMap<>();
-    private Scanner scanner = new Scanner(System.in);
+    private final HashMap<String, List<Double>> students = new HashMap<>();
+    private final Scanner scanner = new Scanner(System.in);
 
 
     public void run() {
@@ -96,7 +96,7 @@ public class StudentManagementSystem {
                 for (double grade : grades) {
                     sum += grade;
                 }
-                double average = (!grades.isEmpty()) ? (double) sum / grades.size() : 0;
+                double average = (!grades.isEmpty()) ? sum / grades.size() : 0;
                 System.out.println(student + ": " + grades + " (Average: " + average + ")");
             }
         }
