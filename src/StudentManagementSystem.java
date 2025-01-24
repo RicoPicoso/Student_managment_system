@@ -35,20 +35,33 @@ public class StudentManagementSystem {
 
 
     private void addStudent() {
-        System.out.print("Enter name: ");
-        String name = scanner.next();
+        try {
+            System.out.print("Enter name: ");
+            String name = scanner.next();
+
+            if (!name.matches("[a-zA-Z]+")) {
+                throw new IllegalArgumentException("Name cannot contain numbers.");
+            }
+
         if (students.containsKey(name)) {
             System.out.println("Student already exists.");
         } else {
             students.put(name, new ArrayList<>());
             System.out.println("Student added successfully.");
         }
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
     private void recordGrades() {
+        try{
         System.out.print("Enter the student's name: ");
         String name = scanner.next();
+            if (!name.matches("[a-zA-Z]+")) {
+                throw new IllegalArgumentException("Name cannot contain numbers.");
+            }
         if (!students.containsKey(name)) {
             System.out.println("Student not found.");
         } else {
@@ -66,6 +79,9 @@ public class StudentManagementSystem {
                 }
             }
             System.out.println("Grades added successfully.");
+        }
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -89,7 +105,7 @@ public class StudentManagementSystem {
 
     private void retrieveStudentsAboveThreshold() {
         System.out.print("Enter the threshold: ");
-        int threshold = scanner.nextInt();
+        double threshold = scanner.nextDouble();
         boolean found = false;
 
         for (String student : students.keySet()) {
